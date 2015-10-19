@@ -1,0 +1,29 @@
+
+#reading the test and train files and assign them the names that will be used in my codes
+train <-read.csv("pendigits.tra.csv", header = F)
+test <-read.csv("pendigits.tes.csv", header = F)
+
+#encoding a vector as a factor (category and enumerated) type
+# the column 17 of dataset is vector which has to encode to factor
+
+test$V17<-as.factor(test$V17)
+train$V17<-as.factor(train$V17)
+
+#Using Weka to train and analyze the dataset by calling RWeka  library 
+library(RWeka)
+
+# Sequence of pattern to assign the values of K
+K_values = seq(1, 20, by=1)
+
+# for loop to run weka code depend on the values of K
+for (i in K_values ) #
+{
+
+#Training and Testing algorithm using Weka KNN
+classifier <- IBk(V17 ~., data = train, control = Weka_control(K=i))
+result <- evaluate_Weka_classifier(classifier, newdata=test)
+
+#printing the value of K and results
+print(paste("              K = " , i ))
+print(result)
+}
