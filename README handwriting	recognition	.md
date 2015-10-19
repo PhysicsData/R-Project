@@ -1,5 +1,6 @@
 
 PROBLEM	DEFINITION
+
 Computers	cannot	beat	humans	on	handwriting	recognition	yet.	Handwriting	
 recognition	is	an	important	research	area	in	AI	research	with	many	applications.	
 See	these	pages	for	further	information	about	the	problem.
@@ -10,6 +11,7 @@ See	these	pages	for	further	information	about	the	problem.
 performance	of	various	algorithms.)
 
 DATA
+
 You	are	given	a	training	and	test	dataset.	
 1. Pendigits.tra.csv
 2. Pendigits.tes.csv
