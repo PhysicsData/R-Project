@@ -1,0 +1,53 @@
+# R-Projectf1<- function(x) { (3*x+1)}
+f2<- function(x) { (x/2)}
+f3<- function(x) {if (x%%2 == 0) 
+{f2(x) }
+else
+{f1(x)}}
+
+f4<-function(x) {result<-x       
+ for (i in 1:4){
+  result[i+1]<-f3(result[i])
+               }
+  return (result) }
+
+f5<-function(x)
+{  result<-x 
+  i<-1
+    while(result[i]!=1){ 
+    result[i+1]<-f3(result[i])
+    i<-i+1
+  }
+    return(result)}
+f6<-function (x){
+  list(f5(x),length(f5(x))-1)
+}
+
+f7<-function(x){
+  y<-vector()
+for(k in x){
+  y<-c(y,length(f5(k))-1)
+}
+data.frame("x"= x, "iteratoins"=y)}
+
+f8<-function(x)
+  y<-vector()
+for(k in x){
+  y<-c(y,max(f5(k)))
+}
+data.frame("x"= x, "iteratoins"=y)}
+
+
+f9<-function(x){
+  numtrj<-vector()
+maxorbit<-vector()
+   for(k in x){
+     numtrj<-c(numtrj,length(f5(k))-1)
+              }
+   for(k in x){
+     maxorbit<-c(maxorbit,max(f5(k)))
+              }
+   dataframe<-data.frame("x"= x, "max"=maxorbit, "iteratoins"=numtrj)
+return(dataframe)
+ }
+  
