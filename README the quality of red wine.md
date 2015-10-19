@@ -1,4 +1,4 @@
-# R-ProjectPROBLEM	DEFINITION
+PROBLEM	DEFINITION
 
 Build	a	model to	predict	the	quality	of red wine using	its	attributes..	
 This	is	an	informally	defined	ptoblem.	First	formally	define	this	problem	and	then	
