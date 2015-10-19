@@ -1,0 +1,54 @@
+#reading the data file and assign a new name that will be used in my codes 
+red_wine <-read.csv("winequality.red.csv", sep=";")
+
+#loading the libraries that needed for the modeling
+library("ROCR")
+library("caret")
+library("e1071")
+library("RWeka")
+
+# Summary of the dataset
+head(red_wine)
+dim(red_wine)
+names(red_wine)
+summary(red_wine)
+str(red_wine)
+
+# summary of the quality column
+summary(red_wine$quality)
+unique(red_wine$quality)
+
+#added a new column that take 2 voules 0 or 1
+
+red_wine["kind"] <- NA
+red_wine$kind <- ifelse(red_wine$quality > 5,"1", "0")
+
+#encoding vector  to factor (category and enumerated) type
+red_wine$kind<-as.factor(red_wine$kind)
+
+
+# Create R Formulas, to write variable names using kind coulmn as class with 11 features.
+# quality features did not use in the model.
+formula_text <- paste(names(red_wine)[13] ,"~",
+paste(names(red_wine[1:11]), collapse="+"))
+formula <- as.formula(formula_text)
+formula
+
+
+# Create R Formulas, to write variable names using kind coulmn as class with 1 to 5 features.
+# quality features did not use in the model.
+formula_text <- paste(names(red_wine)[13] ,"~",
+paste(names(red_wine[1:5]), collapse="+"))
+formula <- as.formula(formula_text)
+formula
+
+# Create R Formulas, to write variable names using kind coulmn as class with 6 to 11 features.
+# quality features did not use in the model.
+formula_text <- paste(names(red_wine)[13] ,"~",
+paste(names(red_wine[6:11]), collapse="+"))
+formula <- as.formula(formula_text)
+formula
+
+# Using rWeka For Logistic Regression
+weka_fit <- Logistic(formula, data = red_wine)
+evaluate_Weka_classifier(weka_fit, numFolds = 10)
